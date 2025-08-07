@@ -1,0 +1,12 @@
+{
+  "version": "5",
+  "specifiers": {
+    "npm:create-vite@*": "7.1.0"
+  },
+  "npm": {
+    "create-vite@7.1.0": {
+      "integrity": "sha512-SMQET1DUv159LXaevcEiaxzIGI+hGB7yeVhcd8+Y5TJAWFfo5Qw0XqkMvXs8Y+0hseKZL5P5j6wG33dSnmbFTA==",
+      "bin": true
+    }
+  }
+}

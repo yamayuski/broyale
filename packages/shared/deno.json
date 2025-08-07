@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "serve": "deno run --allow-net=127.0.0.1:4433 --unstable-net --allow-read=cert.pem,key.pem wt-server.ts"
+  }
+}
