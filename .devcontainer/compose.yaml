@@ -1,0 +1,38 @@
+services:
+  workspace:
+    build:
+      context: .devcontainer
+      dockerfile: Dockerfile
+      args:
+        - USER_UID=${USER_UID:-1000}
+        - USER_GID=${USER_GID:-1000}
+    entrypoint:
+      - /usr/local/share/docker-init.sh
+    command:
+      - sleep
+      - infinity
+    volumes:
+      - type: volume
+        source: workspace-source
+        target: /workspace
+      - type: volume
+        source: workspace-bashhistory
+        target: /commandhistory
+
+  dev.broyale.localhost:
+    volumes:
+      - type: bind
+        source: /workspace/packages/client-main
+        target: /app
+
+  field.broyale.localhost:
+    volumes:
+      - type: bind
+        source: /workspace/packages/server-field
+        target: /app
+
+volumes:
+  workspace-source:
+    driver: local
+  workspace-bashhistory:
+    driver: local

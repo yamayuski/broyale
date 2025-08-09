@@ -1,0 +1,30 @@
+services:
+  dev.broyale.localhost:
+    build:
+      context: packages/client-main
+      dockerfile: Dockerfile
+
+  field.broyale.localhost:
+    build:
+      context: packages/server-field
+      dockerfile: Dockerfile
+      target: development
+    working_dir: /workspace
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+      - type: volume
+        source: webtransport-certs
+        target: /certs
+    ports:
+      - "8443:8443/tcp"
+      - "8443:8443/udp"
+    environment:
+      - MKCERT_CAROOT=/certs/ca
+      - WT_HOST=field.broyale.localhost
+      - WT_PORT=8443
+
+volumes:
+  webtransport-certs:
+    driver: local

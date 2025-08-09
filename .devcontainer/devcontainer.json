@@ -1,3 +1,58 @@
 {
-  
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.schema.json",
+  "name": "Broyale Deno",
+  "init": true,
+  "dockerComposeFile": [
+    "../compose.yaml",
+    "./compose.yaml"
+  ],
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "${localEnv:USERNAME:-broyale}",
+  "containerUser": "${localEnv:USERNAME:-broyale}",
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder:-/workspace}"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true,
+      "upgradePackages": true,
+      "username": "${localEnv:USERNAME:-broyale}",
+      "userUid": "${localEnv:USER_UID:-1000}",
+      "userGid": "${localEnv:USER_GID:-1000}"
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "installDockerComposeSwitch": false
+    },
+    "ghcr.io/devcontainers-extra/features/mkcert:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-extra/features/deno:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "denoland.vscode-deno",
+        "editorconfig.editorconfig",
+        "github.copilot",
+        "github.copilot-chat",
+        "GitHub.vscode-pull-request-github",
+        "DavidAnson.vscode-markdownlint",
+        "ms-azuretools.vscode-containers",
+        "docker.docker"
+      ],
+      "settings": {
+        "deno.enable": true
+      }
+    }
+  }
 }
