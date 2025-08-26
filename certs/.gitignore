@@ -1,0 +1,4 @@
+*
+!.gitignore
+!domains.ext
+!generate_RootCA.sh

@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "dev": "deno task dev:proxy & deno task dev:vite",
+    "dev:proxy": "deno -A npm:local-ssl-proxy --cert ../certs/localhost.pem --key ../certs/localhost-key.pem --source 5172 --target 5173",
+    "dev:vite": "deno -A npm:vite"
+  }
+}

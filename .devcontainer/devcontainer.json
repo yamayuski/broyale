@@ -9,20 +9,21 @@
   "service": "workspace",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
-  "remoteUser": "${localEnv:USERNAME:-broyale}",
-  "containerUser": "${localEnv:USERNAME:-broyale}",
+  "remoteUser": "${localEnv:USERNAME:deno}",
+  "containerUser": "${localEnv:USERNAME:deno}",
   "remoteEnv": {
-    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder:-/workspace}"
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder:/workspace}"
   },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true,
       "upgradePackages": true,
-      "username": "${localEnv:USERNAME:-broyale}",
-      "userUid": "${localEnv:USER_UID:-1000}",
-      "userGid": "${localEnv:USER_GID:-1000}"
+      "username": "${localEnv:USERNAME:deno}",
+      "userUid": "${localEnv:USER_UID:1993}",
+      "userGid": "${localEnv:USER_GID:1993}"
     },
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+    "./docker-outside-of-docker": {
+      "moby": false,
       "installDockerComposeSwitch": false
     },
     "ghcr.io/devcontainers-extra/features/mkcert:1": {

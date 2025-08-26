@@ -1,1 +1,16 @@
-{}
+{
+  "workspace": [
+    "client",
+    "server",
+    "wt"
+  ],
+  "tasks": {
+    "client": "deno task --cwd=client dev"
+  },
+  "nodeModulesDir": "auto",
+  "imports": {
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.5",
+    "esbuild": "npm:esbuild@^0.25.9",
+    "vite": "npm:vite@^7"
+  }
+}

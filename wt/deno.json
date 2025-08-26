@@ -1,0 +1,7 @@
+{
+  "name": "@broyale/wt",
+  "exports": {
+    ".": "./mod.ts",
+    "./serveWebTransport": "./serveWebTransport.ts"
+  }
+}

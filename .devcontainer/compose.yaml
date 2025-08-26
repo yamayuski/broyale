@@ -1,19 +1,23 @@
 services:
   workspace:
+    image: broyale/workspace:latest
+    pull_policy: build
     build:
       context: .devcontainer
       dockerfile: Dockerfile
       args:
-        - USER_UID=${USER_UID:-1000}
-        - USER_GID=${USER_GID:-1000}
-    entrypoint:
-      - /usr/local/share/docker-init.sh
-    command:
-      - sleep
-      - infinity
+        USERNAME: ${USERNAME:-deno}
+        USER_UID: ${USER_UID:-1993}
+        USER_GID: ${USER_GID:-1993}
+        TZ: ${TZ:-UTC}
+        LANGUAGE: ${LANGUAGE:-en}
+        COUNTRY: ${COUNTRY:-US}
+        ENCODING: ${ENCODING:-UTF-8}
+        LOCALE: ${LOCALE:-"en_US.UTF-8 UTF-8"}
+    command: sleep infinity
     volumes:
-      - type: volume
-        source: workspace-source
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}
         target: /workspace
       - type: volume
         source: workspace-bashhistory
@@ -22,17 +26,15 @@ services:
   dev.broyale.localhost:
     volumes:
       - type: bind
-        source: /workspace/packages/client-main
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/packages/client-main
         target: /app
 
   field.broyale.localhost:
     volumes:
       - type: bind
-        source: /workspace/packages/server-field
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/packages/server-field
         target: /app
 
 volumes:
-  workspace-source:
-    driver: local
   workspace-bashhistory:
     driver: local

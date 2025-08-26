@@ -3,17 +3,14 @@ services:
     build:
       context: packages/client-main
       dockerfile: Dockerfile
+      target: development
 
   field.broyale.localhost:
     build:
       context: packages/server-field
       dockerfile: Dockerfile
       target: development
-    working_dir: /workspace
     volumes:
-      - type: bind
-        source: .
-        target: /workspace
       - type: volume
         source: webtransport-certs
         target: /certs
