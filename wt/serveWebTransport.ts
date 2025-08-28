@@ -10,7 +10,9 @@ export interface WebTransportOptions extends Deno.QuicServerTransportOptions {
 
 export type WebTransportSocket = WebTransport & { url: string };
 
-export type WebTransportHandler = (wt: WebTransportSocket) => Promise<WebTransportCloseInfo | void | undefined>;
+export type WebTransportHandler = (
+  wt: WebTransportSocket,
+) => Promise<WebTransportCloseInfo | void | undefined>;
 
 export async function serveWebTransport(
   options: WebTransportOptions,
@@ -26,14 +28,20 @@ export async function serveWebTransport(
     key: options.key,
     congestionControl: options.congestionControl,
     keepAliveInterval: options.keepAliveInterval,
-    maxConcurrentBidirectionalStreams: options.maxConcurrentBidirectionalStreams,
-    maxConcurrentUnidirectionalStreams: options.maxConcurrentUnidirectionalStreams,
+    maxConcurrentBidirectionalStreams:
+      options.maxConcurrentBidirectionalStreams,
+    maxConcurrentUnidirectionalStreams:
+      options.maxConcurrentUnidirectionalStreams,
     maxIdleTimeout: options.maxIdleTimeout,
     preferredAddressV4: options.preferredAddressV4,
     preferredAddressV6: options.preferredAddressV6,
   });
 
-  console.info(`WebTransport server listening on https://${options.hostname ?? "127.0.0.1"}:${server.addr.port ?? options.port}`);
+  console.info(
+    `WebTransport server listening on https://${
+      options.hostname ?? "127.0.0.1"
+    }:${server.addr.port ?? options.port}`,
+  );
 
   Deno.addSignalListener("SIGINT", () => {
     console.info("Received SIGINT, shutting down...");
@@ -57,10 +65,12 @@ export async function serveWebTransport(
             return wt;
           }).then(handler)
           .then((closeInfo) => {
-            const info = closeInfo ?
-              `code:${closeInfo.closeCode}, reason:${closeInfo.reason}` :
-              `no closeInfo`;
-            console.debug(`WebTransport connection "${remote}" was closed info: ${info}`);
+            const info = closeInfo
+              ? `code:${closeInfo.closeCode}, reason:${closeInfo.reason}`
+              : `no closeInfo`;
+            console.debug(
+              `WebTransport connection "${remote}" was closed info: ${info}`,
+            );
           }).catch((error) => {
             console.error("Error handling WebTransport:", error);
             if (options.onWebTransportError) {

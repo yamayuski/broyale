@@ -9,7 +9,8 @@ globalThis.addEventListener("load", () => {
 let JSONRPCID = 1;
 
 async function main() {
-  const url = import.meta.env.VITE_API_URL;
+  const url =
+    `https://${import.meta.env.VITE_HOST_NAME}:${import.meta.env.VITE_HOST_PORT}/`;
   console.log(`API URL: ${url}`);
   const wt = new WebTransport(url);
   await wt.ready;

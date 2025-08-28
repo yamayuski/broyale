@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "cbor2": "npm:cbor2@^2.0.1"
+  },
+  "exports": {
+    ".": "./mod.ts",
+    "./client": "./client.ts",
+    "./rpc": "./rpc.ts"
+  }
+}

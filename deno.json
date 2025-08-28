@@ -1,11 +1,13 @@
 {
   "workspace": [
     "client",
+    "schema",
     "server",
     "wt"
   ],
   "tasks": {
-    "client": "deno task --cwd=client dev"
+    "client": "deno task --cwd=client dev",
+    "server": "deno task --cwd=server dev"
   },
   "nodeModulesDir": "auto",
   "imports": {

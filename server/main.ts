@@ -1,8 +1,8 @@
 import { serveWebTransport } from "@broyale/wt/serveWebTransport";
 
-const cert = Deno.readTextFileSync("../certs/localhost.pem");
-const key = Deno.readTextFileSync("../certs/localhost-key.pem");
-const hostname = "wt.broyale.localhost";
+const cert = Deno.readTextFileSync("../certs/fullchain.pem");
+const key = Deno.readTextFileSync("../certs/privkey.pem");
+const hostname = "localhost.lemonde.app";
 const port = 4433;
 
 serveWebTransport(
@@ -13,7 +13,9 @@ serveWebTransport(
     port,
   },
   async (wt) => {
-    for await (const { readable, writable } of wt.incomingBidirectionalStreams) {
+    for await (
+      const { readable, writable } of wt.incomingBidirectionalStreams
+    ) {
       let data = "";
       for await (const value of readable.pipeThrough(new TextDecoderStream())) {
         data += value;
@@ -37,11 +39,14 @@ serveWebTransport(
               };
               const writer = writable.getWriter();
               await writer.ready;
-              writer.write(new TextEncoder().encode(`${JSON.stringify(response)}\n`));
+              writer.write(
+                new TextEncoder().encode(`${JSON.stringify(response)}\n`),
+              );
               await writer.close();
             }
+          }
         }
       }
     }
-  }
-});
+  },
+);

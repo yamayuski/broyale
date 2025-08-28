@@ -5,8 +5,8 @@ Browser Battle Royale Online Game
 ## Installation
 
 - Install [mkcert](https://github.com/FiloSottile/mkcert) to host
-- Install [vscode](https://code.visualstudio.com/) and [Remote Development
-  extension](https://vscode.dev/redirect?url=vscode://extension/ms-vscode-remote.vscode-remote-extensionpack)
+- Install [vscode](https://code.visualstudio.com/) and
+  [Remote Development extension](https://vscode.dev/redirect?url=vscode://extension/ms-vscode-remote.vscode-remote-extensionpack)
 - Install
   [docker-compatible](https://code.visualstudio.com/remote/advancedcontainers/docker-options)
   container runtime
